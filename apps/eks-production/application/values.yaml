@@ -7,6 +7,10 @@ spec:
   source:
     repoURL: https://github.com/thienchuong/argocd-apps.git
     targetRevision: main
-  syncPolicy: {}
+  syncPolicy:
+    automated:
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
 applications:
   - podinfo
