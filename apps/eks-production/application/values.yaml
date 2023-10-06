@@ -5,10 +5,8 @@ spec:
     namespace: application
     cluster: eks-production
   source:
-    repoURL: https://github.com/thienchuong/project-argocd.git
+    repoURL: https://github.com/thienchuong/argocd-apps.git
     targetRevision: main
   syncPolicy: {}
 applications:
-  - my-app-1
-  - my-app-2
-  - my-app-3
+  - podinfo
