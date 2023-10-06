@@ -1,0 +1,14 @@
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: application
+    cluster: eks-production
+  source:
+    repoURL: https://github.com/thienchuong/project-argocd.git
+    targetRevision: main
+  syncPolicy: {}
+applications:
+  - my-app-1
+  - my-app-2
+  - my-app-3

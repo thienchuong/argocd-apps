@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: observability-stack
+  namespace: argocd
+spec:
+  destination:
+    namespace: observability
+    server: {{ .Values.spec.destination.server }}
+  project: sre
+  source:
+    helm:
+      valueFiles:
+      - values-grafana.yaml
+      - values-prometheus.yaml
+    path: values/eks-production/observability-stack
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

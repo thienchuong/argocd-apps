@@ -1,0 +1,13 @@
+apiVersion: v2
+name: project-chart
+description: A Helm chart for deploy project application
+
+maintainers:
+  - name: "sre-team"
+    email: thienchuong004@gmail.com
+
+type: application
+
+version: 1.0.0
+
+appVersion: "1.0.0"

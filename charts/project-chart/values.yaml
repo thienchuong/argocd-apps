@@ -1,0 +1,120 @@
+serviceName: "my-service"
+revisionHistoryLimit: 10
+progressDeadlineSeconds: 600
+replicaCount: 3
+strategyType: "RollingUpdate"
+maxSurge: "25%"
+maxUnavailable: "25%"
+nodeAffinityKey: "zone"
+zoneOperator: "In"
+zone: "ap-southeast-1c"
+
+lifecycle: {}
+  # postStart:
+  #   exec:
+  #     command:
+  #     - echo hello
+
+
+image:
+  repository: ""
+  tag: ""
+  pullPolicy: "IfNotPresent"
+
+initContainers:
+  - name: "migration-container"
+    image: ""
+    command: ["/bin/sh", "-c"]
+    args: ["yarn migration:run ; yarn seed:run"]
+
+extraEnvFrom:
+  - configMapRef:
+      name: "my-service-config"
+
+startupProbe: {}
+  # httpGet:
+  #   path: "/startup"
+  #   port: 8080
+  # failureThreshold: 30
+  # periodSeconds: 10
+
+livenessProbe: {}
+  # httpGet:
+  #   path: "/healthz"
+  #   port: 8080
+  # initialDelaySeconds: 3
+  # periodSeconds: 3
+
+readinessProbe: {}
+  # httpGet:
+  #   path: "/readiness"
+  #   port: 8080
+  # initialDelaySeconds: 3
+  # periodSeconds: 3
+
+containerPortName: "http"
+containerPort: 8080
+containerPortProtocol: "TCP"
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+
+extraVolumeMounts: []
+  # - name: my-service-data
+  #   mountPath: /data
+extraVolumes: []
+  # - name: my-service-data
+  #   emptyDir: {}
+
+serviceAccountName: my-service-account
+dnsPolicy: ClusterFirst
+restartPolicy: Always
+imagePullSecrets:
+  - name: image-pull-secret
+
+serviceAccount:
+  enable: true
+  annotations: []
+  labels: {}
+
+service:
+  enable: true
+  type: ClusterIP
+  port: 8080
+  protocol: TCP
+  targetPort: 3000
+  name: http
+
+configmap:
+  enable: true
+  data:
+    DATABASE_NAME: 'db-name'
+    DATABASE_HOST: 'db-url'
+    DATABASE_PORT: '5432'
+    YOUR_ENV: 'your-env'
+
+ingress:
+  enable: false
+  name: my-service-ingress
+  serviceName: my-service
+  servicePort: 8080
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/rule-type: PathPrefixStrip
+  tls:
+    - secretName: my-service-tls-cert
+      hosts:
+        - abc.io
+  host: abc.io
+  paths:
+    - path: /api(/|$)(.*)
+      pathType: ImplementationSpecific
