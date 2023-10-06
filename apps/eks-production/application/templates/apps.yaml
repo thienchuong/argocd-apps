@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: {{ .Values.spec.project }}-apps
+  namespace: argocd
 spec:
   generators:
     - list:

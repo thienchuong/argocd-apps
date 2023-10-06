@@ -9,7 +9,8 @@ spec:
     targetRevision: main
   syncPolicy:
     automated:
-      selfHeal: false
+      selfHeal: true
+      prune: true
     syncOptions:
       - CreateNamespace=true
 applications:
