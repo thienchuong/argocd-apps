@@ -1,5 +1,5 @@
 spec:
-  project: default
+  project: sre
   destination:
     server: https://kubernetes.default.svc
     cluster: eks-production

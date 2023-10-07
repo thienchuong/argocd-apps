@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: aws-load-balancer-controller
     server: {{ .Values.spec.destination.server }}
-  project: sre
+  project: {{ .Values.spec.project }}
   source:
     path: values/{{ .Values.spec.destination.cluster }}/aws-load-balancer-controller
     repoURL: {{ .Values.spec.source.repoURL }}
