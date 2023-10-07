@@ -16,8 +16,7 @@ spec:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
+    {{- toYaml .Values.spec.syncPolicy | nindent 8 }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -37,5 +36,4 @@ spec:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
+    {{- toYaml .Values.spec.syncPolicy | nindent 8 }}

@@ -1,16 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-load-balancer-controller
+  name: cert-manager
   namespace: argocd
 spec:
   destination:
-    namespace: aws-load-balancer-controller
+    namespace: cert-manager
     server: {{ .Values.spec.destination.server }}
   project: sre
   source:
-    path: values/{{ .Values.spec.destination.cluster }}/aws-load-balancer-controller
+    path: values/{{ .Values.spec.destination.cluster }}/platform/cert-manager
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    {{- toYaml .Values.spec.syncPolicy | nindent 8 }}
+    syncOptions:
+      - CreateNamespace=true

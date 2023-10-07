@@ -6,6 +6,6 @@ spec:
   source:
     repoURL: https://github.com/tsocial/trustvision-argocd.git
     targetRevision: main
-  syncPolicy: {}
-#    automated:
-#      selfHeal: true
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
