@@ -11,7 +11,7 @@ cert-manager:
   logLevel: 2
   leaderElection:
     namespace: "kube-system"
-installCRDs: false
+installCRDs: true
 replicaCount: 1
 strategy: {}
 podDisruptionBudget:
