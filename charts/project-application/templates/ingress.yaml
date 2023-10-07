@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enable -}}
-{{- $serviceName := .Values.serviceName -}}
-{{- $servicePort := .Values.service.port -}}
+{{- $serviceName := .Values.ingress.serviceName -}}
+{{- $servicePort := .Values.ingress.servicePort -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -23,8 +23,7 @@ spec:
           backend:
             service:
               name: {{ $serviceName }}
-              port:
-                number: {{ $servicePort }}
+              port: {{ $servicePort }}
         {{- end }}
 {{- if .Values.ingress.tls }}
   tls:

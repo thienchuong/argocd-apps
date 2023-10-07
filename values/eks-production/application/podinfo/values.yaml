@@ -151,7 +151,7 @@ project-application:
     enable: true
     name: podinfo
     serviceName: podinfo
-    servicePort: 8080
+    servicePort: 9898
     className: nginx
     annotations:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
