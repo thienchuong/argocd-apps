@@ -102,13 +102,13 @@ ingress:
   servicePort: 8080
   className: nginx
   annotations: {}
-  tls:
-    - secretName: secret
-      hosts:
-        - example-1.io
-        - example-2.io
-        - example-3.io
-  host: example-1.io
+  tls: []
+  #   - secretName: secret
+  #     hosts:
+  #       - example-1.io
+  #       - example-2.io
+  #       - example-3.io
+  # host: example-1.io
   paths:
     - path: /api(/|$)(.*)
       pathType: ImplementationSpecific

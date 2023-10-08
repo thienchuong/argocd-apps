@@ -153,11 +153,11 @@ project-application:
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
-    tls:
-      - secretName: secret
-        hosts:
-          - podinfo.io
-    host: podinfo.io
+    tls: []
+    #   - secretName: secret
+    #     hosts:
+    #       - podinfo.io
+    # host: podinfo.io
     paths:
       - path: /
         pathType: ImplementationSpecific
