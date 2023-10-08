@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-production
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: thienchuong004@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+    - http01:
+        ingress:
+          name: web-ingress
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: web-ssl
+type: kubernetes.io/tls
+stringData:
+  tls.key: ""
+  tls.crt: ""

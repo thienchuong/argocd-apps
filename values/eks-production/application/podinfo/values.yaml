@@ -153,11 +153,12 @@ project-application:
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
-    tls: []
-    #   - secretName: secret
-    #     hosts:
-    #       - podinfo.io
-    # host: podinfo.io
+      cert-manager.io/issuer: letsencrypt-production
+    tls:
+      - secretName: web-ssl
+        hosts:
+          - k8s-applicat-podinfo-5fa7dc10c0-550585144.ap-southeast-1.elb.amazonaws.com
+    host: k8s-applicat-podinfo-5fa7dc10c0-550585144.ap-southeast-1.elb.amazonaws.com
     paths:
       - path: /
         pathType: Prefix
