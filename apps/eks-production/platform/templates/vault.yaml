@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: vault
     server: {{ .Values.spec.destination.server }}
-  project: sre
+  project: {{ .Values.spec.project }}
   source:
     helm:
       valueFiles:
@@ -27,7 +27,7 @@ spec:
   destination:
     namespace: vault
     server: {{ .Values.spec.destination.server }}
-  project: sre
+  project: {{ .Values.spec.project }}
   source:
     helm:
       valueFiles:
