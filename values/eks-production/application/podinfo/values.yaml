@@ -142,10 +142,7 @@ project-application:
   configmap:
     enable: true
     data:
-      DATABASE_NAME: 'db-name'
-      DATABASE_HOST: 'db-url'
       DATABASE_PORT: '5432'
-      DATABASE_USERNAME: 'db-user'
       YOUR_ENV_VAR: 'your-env-var'
   ingress:
     enable: true
@@ -156,6 +153,7 @@ project-application:
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/listen-ports: '{"HTTP":9898}]'
     tls:
       - secretName: secret
         hosts:
