@@ -1,7 +1,7 @@
 aws-load-balancer-controller: 
   replicaCount: 2
   serviceAccount:
-    create: false
+    create: true
     annotations:
       eks.amazonaws.com/role-arn: arn:aws:iam::157329022736:role/load-balancer-controller
     name: aws-load-balancer-controller
