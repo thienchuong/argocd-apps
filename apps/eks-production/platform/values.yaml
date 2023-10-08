@@ -1,8 +1,9 @@
 spec:
-  project: sre
+  project: default
   destination:
     server: https://kubernetes.default.svc
     cluster: eks-production
+    folder: platform
   source:
     repoURL: https://github.com/thienchuong/argocd-apps.git
     targetRevision: main

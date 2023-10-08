@@ -9,7 +9,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
-    path: values/{{ .Values.spec.destination.cluster }}/platform/cert-manager
+    path: values/{{ .Values.spec.destination.cluster }}/{{ .Values.spec.destination.folder }}/cert-manager
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
