@@ -160,4 +160,4 @@ project-application:
     # host: podinfo.io
     paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
