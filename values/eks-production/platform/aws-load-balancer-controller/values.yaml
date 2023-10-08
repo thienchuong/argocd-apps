@@ -5,5 +5,4 @@ aws-load-balancer-controller:
     annotations:
       eks.amazonaws.com/role-arn: arn:aws:iam::157329022736:role/load-balancer-controller
     name: aws-load-balancer-controller
-    automountServiceAccountToken: true
   clusterName: eks-production

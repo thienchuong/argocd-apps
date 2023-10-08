@@ -154,11 +154,8 @@ project-application:
     servicePort: 9898
     className: alb
     annotations:
-      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      nginx.ingress.kubernetes.io/cors-allow-origin: '*'
-      nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-      nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-      nginx.ingress.kubernetes.io/rule-type: PathPrefixStrip
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: ip
     tls:
       - secretName: secret
         hosts:
