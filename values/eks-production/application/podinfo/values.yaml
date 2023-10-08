@@ -152,7 +152,7 @@ project-application:
     name: podinfo
     serviceName: podinfo
     servicePort: 9898
-    className: nginx
+    className: alb
     annotations:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/cors-allow-origin: '*'
