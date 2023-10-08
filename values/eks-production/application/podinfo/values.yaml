@@ -157,8 +157,8 @@ project-application:
     tls:
       - secretName: web-ssl
         hosts:
-          - k8s-applicat-podinfo-5fa7dc10c0-550585144.ap-southeast-1.elb.amazonaws.com
-    host: k8s-applicat-podinfo-5fa7dc10c0-550585144.ap-southeast-1.elb.amazonaws.com
+          - thienchuong.xyz
+    host: thienchuong.xyz
     paths:
       - path: /
         pathType: Prefix

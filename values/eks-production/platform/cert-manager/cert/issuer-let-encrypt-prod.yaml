@@ -11,7 +11,7 @@ spec:
     solvers:
     - http01:
         ingress:
-          name: web-ingress
+          name: podinfo
 ---
 apiVersion: v1
 kind: Secret
