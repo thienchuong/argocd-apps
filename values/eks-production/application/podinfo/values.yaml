@@ -153,9 +153,7 @@ project-application:
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
-      cert-manager.io/issuer: letsencrypt-production
     tls:
-      - secretName: web-ssl
         hosts:
           - thienchuong.xyz
     host: thienchuong.xyz
