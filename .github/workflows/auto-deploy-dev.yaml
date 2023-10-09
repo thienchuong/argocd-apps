@@ -1,0 +1,44 @@
+name: Auto deploy to dev environment
+
+on:
+  repository_dispatch:
+    types:
+      - deploy-dev
+
+env:
+  PATH: value/eks-dev/application
+
+jobs:
+  auto-deploy-dev:
+    name: Auto deploy to dev environment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # To commit to the main branch if the image tag is different
+          token: ${{ secrets.ORG_GITHUB_TOKEN }}
+          ref: main
+      
+      # This will return the image tag if the image tag input value is the same as the yml value
+      - name: Check image tag for redeploy
+        uses: mikefarah/yq@v4.9.5
+        id: check_image_tag
+        with:
+          cmd: |
+            yq eval '.project-application.image.tag | select(. == "${{ github.event.client_payload.image_tag }}")' ${{ env.PATH }}/${{ github.event.client_payload.service }}/values.yaml
+
+
+      - name: Update image tag
+        uses: mikefarah/yq@v4.9.5
+        if: steps.check_image_tag.outputs.result == ''
+        with:
+          cmd: |
+            yq -e eval -i '.project-application.image.tag = "${{ github.event.client_payload.image_tag }}"' ${{ env.PATH }}/${{ github.event.client_payload.service }}/values.yaml
+
+      - name: Commit image tag
+        uses: EndBug/add-and-commit@v9
+        if: steps.check_image_tag.outputs.result == ''
+        with:
+          committer_name: ci-job
+          message: '[DEV] Deploy ${{ github.event.client_payload.repo }} version ${{ github.event.client_payload.image_tag }}'
+          pull: '-q -v'
