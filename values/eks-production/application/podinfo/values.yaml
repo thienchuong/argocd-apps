@@ -156,8 +156,8 @@ project-application:
     tls:
       - secretName:
         hosts:
-          - thienchuong.xyz
-    host: thienchuong.xyz
+          - podinfo.thienchuong.xyz
+    host: podinfo.thienchuong.xyz
     paths:
       - path: /
         pathType: Prefix
