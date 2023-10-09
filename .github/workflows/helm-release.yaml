@@ -40,7 +40,7 @@ jobs:
         uses: bsord/helm-push@v4.1.0
         with:
           useOCIRegistry: false
-          registry-url:  oci://ghcr.io/${{ env.HELM_REPO }}
+          registry-url:  oci://ghcr.io/${{ github.repository }}
           access-token: ${{ secrets.ORG_GITHUB_TOKEN }}
           username: ${{ github.actor }}
           force: true
@@ -50,14 +50,3 @@ jobs:
         if: steps.filter.outputs.charts == 'true'
         run: |
           helm plugin install https://github.com/chartmuseum/helm-push.git || true
-
-      - name: Package and push helm chart to Amazon ECR
-        if: steps.filter.outputs.charts == 'true'
-        env:
-          REGISTRY_URL: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: project-application
-        run: |
-          export HELM_EXPERIMENTAL_OCI=1
-          helm package charts/${{ matrix.chart }}
-          helm inspect chart *.tgz
-          helm push *.tgz oci://$REGISTRY_URL/
