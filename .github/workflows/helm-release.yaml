@@ -5,9 +5,6 @@ on:
     branches:
       - create-chart
 
-env:
-  HELM_REPO: thienchuong/argocd-apps
-
 jobs:
   release-helm-chart:
     strategy:
@@ -39,14 +36,9 @@ jobs:
       - name: Push Helm chart to OCI compatible registry (Github)
         uses: bsord/helm-push@v4.1.0
         with:
-          useOCIRegistry: false
+          useOCIRegistry: true
           registry-url:  oci://ghcr.io/${{ github.repository }}
           access-token: ${{ secrets.ORG_GITHUB_TOKEN }}
           username: ${{ github.actor }}
           force: true
           chart-folder: charts/${{ matrix.chart }}
-
-      - name: Helm dependencies
-        if: steps.filter.outputs.charts == 'true'
-        run: |
-          helm plugin install https://github.com/chartmuseum/helm-push.git || true
