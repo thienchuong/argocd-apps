@@ -5,9 +5,6 @@ on:
     branches:
       - create-chart
 
-env:
-  HELM_REPO: thienchuong/argocd-apps
-
 jobs:
   release-helm-chart:
     strategy:
@@ -32,32 +29,16 @@ jobs:
 
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
-        if: steps.filter.outputs.charts == 'true' # run only if some file in 'charts' folder was changed
+        if: steps.filter.outputs.charts == 'true' # run only if some file in 'charts' folder changed
         with:
           version: v3.12.2
       
       - name: Push Helm chart to OCI compatible registry (Github)
         uses: bsord/helm-push@v4.1.0
         with:
-          useOCIRegistry: false
-          registry-url:  oci://ghcr.io/${{ env.HELM_REPO }}
+          useOCIRegistry: true
+          registry-url:  oci://ghcr.io/${{ github.repository }}
           access-token: ${{ secrets.ORG_GITHUB_TOKEN }}
           username: ${{ github.actor }}
           force: true
           chart-folder: charts/${{ matrix.chart }}
-
-      - name: Helm dependencies
-        if: steps.filter.outputs.charts == 'true'
-        run: |
-          helm plugin install https://github.com/chartmuseum/helm-push.git || true
-
-      - name: Package and push helm chart to Amazon ECR
-        if: steps.filter.outputs.charts == 'true'
-        env:
-          REGISTRY_URL: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: project-application
-        run: |
-          export HELM_EXPERIMENTAL_OCI=1
-          helm package charts/${{ matrix.chart }}
-          helm inspect chart *.tgz
-          helm push *.tgz oci://$REGISTRY_URL/

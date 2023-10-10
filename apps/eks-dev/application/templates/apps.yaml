@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ .Values.spec.project }}-apps
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          {{- range .Values.applications }}
+          - applicationName: {{ . }}
+          {{- end }}
+  template:
+    metadata:
+      name: '{{`{{applicationName}}`}}'
+    spec:
+      project: {{ .Values.spec.project }}
+      source:
+        repoURL: {{ .Values.spec.source.repoURL }}
+        targetRevision: {{ .Values.spec.source.targetRevision }}
+        path: values/{{ .Values.spec.destination.cluster }}/{{ .Values.spec.destination.namespace }}/{{`{{applicationName}}`}}
+      destination:
+        namespace: {{ .Values.spec.destination.namespace }}
+        server: {{ .Values.spec.destination.server }}
+      syncPolicy:
+      {{- toYaml .Values.spec.syncPolicy | nindent 8 }}

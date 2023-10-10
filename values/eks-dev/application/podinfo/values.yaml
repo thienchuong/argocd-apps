@@ -145,7 +145,7 @@ project-application:
       DATABASE_PORT: '5432'
       YOUR_ENV_VAR: 'your-env-var'
   ingress:
-    enable: true
+    enable: false
     name: podinfo
     serviceName: podinfo
     servicePort: 9898
@@ -156,7 +156,7 @@ project-application:
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
       alb.ingress.kubernetes.io/ssl-redirect: '443'
       alb.ingress.kubernetes.io/load-balancer-name: podinfo-alb-dev
-      alb.ingress.kubernetes.io/group.name: application-group-prod
+      alb.ingress.kubernetes.io/group.name: application-group-dev
     tls:
       - secretName:
         hosts:
