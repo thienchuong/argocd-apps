@@ -1,4 +1,5 @@
-karpenter:  
+karpenter:
+  replicas: 1
   serviceAccount:
     create: true
     name: "karpenter"
