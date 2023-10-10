@@ -9,6 +9,6 @@ karpenter:
   settings:
     aws:
       clusterName: "eks-production"
-      clusterEndpoint: "https://CF7E829FBD18353AE932B66822BD21F7.gr7.ap-southeast-1.eks.amazonaws.com"
-      defaultInstanceProfile: "Karpenter-eks-production-20231010073742101400000005"
+      clusterEndpoint: "https://3E38D01217381BDD292A0813E88EA4F2.gr7.ap-southeast-1.eks.amazonaws.com"
+      defaultInstanceProfile: "Karpenter-eks-production-2023101011134725660000001e"
 # troubleshooting guide https://karpenter.sh/docs/troubleshooting/#failed-calling-webhook-validationwebhookprovisionerskarpentersh
