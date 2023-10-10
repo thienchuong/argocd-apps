@@ -32,3 +32,5 @@ spec:
     karpenter.sh/discovery: eks-production
   securityGroupSelector:
     karpenter.sh/discovery: eks-production
+  tags:
+    ec2:ResourceTag/karpenter.sh/discovery: eks-production
