@@ -1,10 +1,10 @@
 apiVersion: v2
 name: karpenter
 
-version: 0.7.0
-appVersion: 0.7.0
+version: v0.31.0
+appVersion: v0.31.0
 
 dependencies:
   - name: karpenter
-    version: 0.7.0
-    repository: https://charts.karpenter.sh/
+    version: v0.31.0
+    repository: oci://public.ecr.aws/karpenter
