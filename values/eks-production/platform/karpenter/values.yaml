@@ -7,5 +7,5 @@ karpenter:
   settings:
     aws:
       clusterName: "eks-production"
-      clusterEndpoint: ""
+      clusterEndpoint: "https://CF7E829FBD18353AE932B66822BD21F7.gr7.ap-southeast-1.eks.amazonaws.com"
       defaultInstanceProfile: "KarpenterNodeInstanceProfile-eks-production"
