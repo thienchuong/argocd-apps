@@ -24,3 +24,5 @@ metadata:
 spec:
   subnetSelector:
     karpenter.sh/discovery: eks-production
+  securityGroupSelector:
+    karpenter.sh/discovery: eks-production
