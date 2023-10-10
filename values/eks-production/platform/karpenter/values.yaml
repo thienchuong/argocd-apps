@@ -3,7 +3,7 @@ karpenter:
     create: true
     name: "karpenter"
     annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::157329022736:role/karpenter_controller"
+      eks.amazonaws.com/role-arn: arn:aws:iam::157329022736:role/karpenter"
   tolerations: []
   settings:
     aws:
