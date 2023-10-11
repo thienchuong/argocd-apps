@@ -15,10 +15,10 @@ spec:
         valueFrom:
           secretKeyRef:
             name: eks-secret
-            key: username
+            key: host
       - name: API_KEY
         valueFrom:
           secretKeyRef:
             name: eks-secret
-            key: key
+            key: password
   restartPolicy: Always
