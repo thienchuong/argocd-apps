@@ -1,6 +1,6 @@
 external-secrets:
   replicaCount: 1
-  serviceaccount:
+  serviceAccount:
     create: true
     name: external-secrets
     annotations:
