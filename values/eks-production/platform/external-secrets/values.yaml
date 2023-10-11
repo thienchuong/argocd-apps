@@ -1,3 +1,8 @@
 external-secrets:
   replicaCount: 1
+  serviceaccount:
+    create: true
+    name: external-secrets
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::157329022736:role/external_secrets
   installCRDs: true
