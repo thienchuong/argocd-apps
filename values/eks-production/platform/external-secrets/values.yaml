@@ -1,0 +1,3 @@
+external-secrets:
+  replicaCount: 1
+  installCRDs: true
