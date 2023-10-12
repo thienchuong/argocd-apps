@@ -1,6 +1,6 @@
 grafana:
   enabled: true
-  namespaceOverride: "grafana"
+  fullnameOverride: "grafana"
   ingress:
     enabled: false
   sidecar:
