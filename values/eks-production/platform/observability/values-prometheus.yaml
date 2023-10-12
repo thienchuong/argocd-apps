@@ -1,4 +1,6 @@
-observability:
+prometheus:
+  enabled: true
+  fullnameOverride: "prometheus"
   defaultRules:
     create: true
     rules:
@@ -39,18 +41,8 @@ observability:
         - kube-system
   prometheus:
     prometheusSpec:
-      ruleNamespaceSelector: {}
       ruleSelectorNilUsesHelmValues: false
-      ruleSelector: {}
       serviceMonitorSelectorNilUsesHelmValues: false
-      serviceMonitorSelector: {}
-      serviceMonitorNamespaceSelector: {}
       podMonitorSelectorNilUsesHelmValues: false
-      podMonitorSelector: {}
-      podMonitorNamespaceSelector: {}
       probeSelectorNilUsesHelmValues: false
-      probeSelector: {}
-      probeNamespaceSelector: {}
       scrapeConfigSelectorNilUsesHelmValues: true
-      scrapeConfigSelector: {}
-      scrapeConfigNamespaceSelector: {}

@@ -1,0 +1,8 @@
+grafana:
+  enabled: true
+  namespaceOverride: "grafana"
+  ingress:
+    enabled: false
+  sidecar:
+    datasources:
+      enabled: true
