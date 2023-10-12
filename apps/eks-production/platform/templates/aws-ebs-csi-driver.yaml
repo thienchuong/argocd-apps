@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-ebs-csi-driver
+  namespace: argocd
+spec:
+  destination:
+    namespace: aws-ebs-csi-driver
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    path: values/{{ .Values.spec.destination.cluster }}/{{ .Values.spec.destination.folder }}/aws-ebs-csi-driver
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    {{- toYaml .Values.spec.syncPolicy | nindent 8 }}
