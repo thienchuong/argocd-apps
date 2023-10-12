@@ -3,6 +3,13 @@ grafana:
   fullnameOverride: "grafana"
   ingress:
     enabled: false
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://observability-prometheus-server:80
   sidecar:
     datasources:
       enabled: true
