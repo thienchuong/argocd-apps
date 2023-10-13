@@ -29,7 +29,6 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/grafana-dashboards-kubernetes
-          foldersFromFilesStructure: true
     dashboards:
       grafana-dashboards-kubernetes:
         k8s-system-api-server:
@@ -53,3 +52,12 @@ grafana:
   sidecar:
     datasources:
       enabled: true
+    dashboards:
+      enabled: true
+      defaultFolderName: "General"
+      label: grafana_dashboard
+      labelValue: "1"
+      folderAnnotation: grafana_folder
+      searchNamespace: ALL
+      provider:
+        foldersFromFilesStructure: true
