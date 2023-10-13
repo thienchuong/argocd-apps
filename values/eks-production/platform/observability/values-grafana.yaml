@@ -29,6 +29,7 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/grafana-dashboards-kubernetes
+          foldersFromFilesStructure: true
     dashboards:
       grafana-dashboards-kubernetes:
         k8s-system-api-server:
