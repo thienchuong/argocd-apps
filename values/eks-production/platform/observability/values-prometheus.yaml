@@ -3,18 +3,6 @@ prometheus:
     create: true
     ingress:
       enabled: false
-    alertmanagers:
-      route:
-        - match:
-            severity: test-telegram
-          receiver: stardata-telegram
-      receivers:
-        - name: stardata-telegram
-          telegram_configs:
-            - bot_token: 6056517654:AAGpwDxUDDENvwk160h82ycNb5UZv6ae-As
-              api_url: https://api.telegram.org
-              chat_id: -1001938508004
-              parse_mode: ''
       scrape_configs:
         - job_name: prometheus
           static_configs:
@@ -265,6 +253,22 @@ prometheus:
               target_label: node
   alertmanager:
     enabled: true
+    config:
+      enabled: true
+      global:
+        resolve_timeout: 5m
+      route:
+        routes:
+          - receiver: stardata-telegram
+            match:
+              severity: test-telegram
+      receivers:
+      - name: stardata-telegram
+        telegram_configs:
+          - bot_token: 6056517654:AAGpwDxUDDENvwk160h82ycNb5UZv6ae-As
+            api_url: https://api.telegram.org
+            chat_id: -1001938508004
+            parse_mode: ''
   kube-state-metrics:
     enabled: true
   prometheus-node-exporter:
