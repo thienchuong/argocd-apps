@@ -9,7 +9,7 @@ prometheus:
         - name: KubernetesPodCrashLooping
           rules:
           - alert: KubernetesPodCrashLooping
-            expr: increase(kube_pod_container_status_restarts_total[1m]) > 3
+            expr: increase(kube_pod_container_status_restarts_total[3m]) > 3
             for: 2m
             labels:
               severity: critical
