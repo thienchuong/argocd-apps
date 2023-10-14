@@ -3,6 +3,23 @@ prometheus:
     create: true
     ingress:
       enabled: false
+  serverFiles:
+    alerting_rules.yaml:
+      groups:
+        - name: KubernetesPodCrashLooping
+          rules:
+          - alert: KubernetesPodCrashLooping
+            expr: increase(kube_pod_container_status_restarts_total[1m]) > 3
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: Kubernetes pod crash looping (instance {{ $labels.instance }})
+              description: "Pod {{ $labels.namespace }}/{{ $labels.pod }} is crash looping\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    prometheus.yml:
+      rule_files:
+        - /etc/config/recording_rules.yml
+        - /etc/config/alerting_rules.yml
       scrape_configs:
         - job_name: prometheus
           static_configs:
