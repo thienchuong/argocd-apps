@@ -18,7 +18,7 @@ prometheus:
               description: "Pod {{ $labels.namespace }}/{{ $labels.pod }} is crash looping\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
     prometheus.yml:
       rule_files:
-        - /etc/config/recording_rules.ayml
+        - /etc/config/recording_rules.yaml
         - /etc/config/alerting_rules.yaml
       scrape_configs:
         - job_name: prometheus
