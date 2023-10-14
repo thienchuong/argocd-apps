@@ -258,17 +258,19 @@ prometheus:
       global:
         resolve_timeout: 5m
       route:
+        receiver: telegram_receiver
+        group_wait: 10s
+        repeat_interval: 5m
         routes:
-          - receiver: stardata-telegram
+          - receiver: telegram_receiver
             match:
-              severity: test-telegram
+              severity: critical
       receivers:
-      - name: stardata-telegram
+      - name: telegram_receiver
         telegram_configs:
-          - bot_token: 6056517654:AAGpwDxUDDENvwk160h82ycNb5UZv6ae-As
-            api_url: https://api.telegram.org
-            chat_id: -1001938508004
-            parse_mode: ''
+        - api_url: 'https://api.telegram.org'
+          bot_token: '6056517654:AAGpwDxUDDENvwk160h82ycNb5UZv6ae-As' # this shoule be masked
+          chat_id: -1001938508004
   kube-state-metrics:
     enabled: true
   prometheus-node-exporter:
